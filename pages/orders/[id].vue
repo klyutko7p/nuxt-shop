@@ -30,13 +30,13 @@
 import { useOrdersStore } from '../../store/orders';
 
 const route = useRoute()
-const orders = useOrdersStore()
+const storeOrders = useOrdersStore()
 
 let order = ref(<Order>{})
 
 onMounted(() => {
-    orders.findOrder(+route.params.id);
-    order.value = orders.getOrder;
+    storeOrders.findOrder(+route.params.id);
+    order.value = storeOrders.getOrder;
 })
 
 </script>

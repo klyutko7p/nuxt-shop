@@ -78,23 +78,23 @@ import { useCartStore } from '../store/cart';
 import { useCategoriesStore } from '../store/categories';
 
 const router = useRouter();
-const cart = useCartStore();
-const categoriesStore = useCategoriesStore();
+const storeCart = useCartStore();
+const storeCategories = useCategoriesStore();
 
 let products = ref<Array<Product>>([])
 let isLoading = ref(true)
 
 function addToCart() {
-    cart.addProductToCart(props.product);
+    storeCart.addProductToCart(props.product);
 }
 
 function changeQuantity(sign: string) {
-    cart.changeQuantity(sign, props.product);
+    storeCart.changeQuantity(sign, props.product);
 }
 
 function deleteProduct(id: number) {
-    cart.deleteProduct(id);
-    cart.actionSum();
+    storeCart.deleteProduct(id);
+    storeCart.actionSum();
 }
 
 const props = defineProps({
@@ -104,8 +104,8 @@ const props = defineProps({
 })
 
 onMounted(async () => {
-    await categoriesStore.fetchProductsByCategory(props.product.category)
-    products.value = categoriesStore.getProductsByCategory
+    await storeCategories.fetchProductsByCategory(props.product.category)
+    products.value = storeCategories.getProductsByCategory
     isLoading.value = false;
 })
 

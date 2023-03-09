@@ -20,14 +20,14 @@
 import { useCategoriesStore } from '../../store/categories';
 
 const route = useRoute();
-const store = useCategoriesStore();
+const storeCategories = useCategoriesStore();
 const category = route.params.category;
 let products = ref<Array<Product>>([])
 let isLoading = ref(true)
 
 onMounted(async () => {
-    await store.fetchProductsByCategory(category)
-    products.value = store.getProductsByCategory
+    await storeCategories.fetchProductsByCategory(category)
+    products.value = storeCategories.getProductsByCategory
     isLoading.value = false;
 })
 

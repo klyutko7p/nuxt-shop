@@ -1,19 +1,19 @@
 <template>
     <Head>
-        <Title>Online Store - Cart {{ cart.cart.length }} items</Title>
+        <Title>Online Store - Cart {{ storeCart.cart.length }} items</Title>
     </Head>
     <div>
-        <h1 class="text-xl font-bold">Cart ➖ ${{ cart.getSumOfProducts.toFixed(2) }}
+        <h1 class="text-xl font-bold">Cart ➖ ${{ storeCart.getSumOfProducts.toFixed(2) }}
             <Icon name="ic:outline-shopping-cart" size="1.5em" />
-            <Icon name="mdi:trash-can" size="1.5em" class="cursor-pointer" @click="cart.clearCart" />
+            <Icon name="mdi:trash-can" size="1.5em" class="cursor-pointer" @click="storeCart.clearCart" />
         </h1>
         <div class="rounded-lg shadow-black shadow-2xl p-5 grid-cols-1 mb-10 mt-10"
-            v-if="cart.getProductsByCart.length > 0">
+            v-if="storeCart.getProductsByCart.length > 0">
             <div v-for="product in products" class="border-t-2 mb-5 border-gray-300">
                 <Product :product="product" :is-cart="true" />
             </div>
             <div class="text-2xl text-center mt-10">
-                <h1 class="font-bold">Cost for all items - ${{ cart.getSumOfProducts.toFixed(2) }}</h1>
+                <h1 class="font-bold">Cost for all items - ${{ storeCart.getSumOfProducts.toFixed(2) }}</h1>
                 <div class="flex items-center justify-center mt-5">
                     <UIMainButton @click="createOrder">Buy</UIMainButton>
                 </div>
@@ -30,7 +30,7 @@
 import { useCartStore } from '../store/cart';
 import { useOrdersStore } from '../store/orders';
 
-const cart = useCartStore();
+const storeCart = useCartStore();
 const orders = useOrdersStore();
 const router = useRouter();
 
@@ -43,8 +43,8 @@ function createOrder() {
 }
 
 onMounted(() => {
-    products.value = cart.getProductsByCart;
-    cart.actionSum();
+    products.value = storeCart.getProductsByCart;
+    storeCart.actionSum();
 })
 
 </script>

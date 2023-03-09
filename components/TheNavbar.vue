@@ -25,7 +25,8 @@
                     class="cursor-pointer font-medium mr-7 relative hover:text-[var(--hover-color)] duration-300 text-xl">
                     <Icon name="ps:cart">
                     </Icon>
-                    <h1 class="absolute bottom-0 right-0 mb-4 animate__animated animate__fadeIn" v-if="products.length > 0">+{{ products?.length }}</h1>
+                    <h1 class="absolute bottom-0 right-0 mb-4 animate__animated animate__fadeIn" v-if="products.length > 0">
+                        +{{ products?.length }}</h1>
                 </NuxtLink>
             </div>
             <div class="space-y-2 cursor-pointer  animate__animated animate__fadeIn" v-if="!isActivatedBurgerMenu"
@@ -56,12 +57,12 @@
 <script setup lang="ts">
 import { useCartStore } from '../store/cart';
 
-const store = useCartStore();
-let products = ref<Array<CartProduct>>([]);
+const storeProducts = useCartStore();
+let products = ref<Array<Product>>([]);
 let isActivatedBurgerMenu = ref(false);
 
 onMounted(async () => {
-    products.value = store.getProductsByCart
+    products.value = storeProducts.getProductsByCart
 })
 
 

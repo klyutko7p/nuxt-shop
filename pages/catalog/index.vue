@@ -1,6 +1,6 @@
 <template>
     <Head>
-        <Title>Online Store - {{ store.query !== "" ? store.query : "Catalog" }}</Title>
+        <Title>Online Store - {{ storeProducts.query !== "" ? storeProducts.query : "Catalog" }}</Title>
     </Head>
     <div class="">
         <div class="mb-5">
@@ -37,18 +37,18 @@
 <script setup lang="ts">
 import { useProductsStore } from '~~/store/products';
 
-const store = useProductsStore();
+const storeProducts = useProductsStore();
 let products = ref<Array<Product>>([]);
 let isLoading = ref(true);
 
 function setQuery(query: string) {
-    store.query = query;
-    let fetchProducts: Array<Product> = store.getProducts
+    storeProducts.query = query;
+    let fetchProducts: Array<Product> = storeProducts.getProducts
 
     if (query === '') {
         products.value = fetchProducts;
     } else {
-        products.value = fetchProducts.filter((product) => product.title.toLowerCase().includes(store.query.toLowerCase()));
+        products.value = fetchProducts.filter((product) => product.title.toLowerCase().includes(storeProducts.query.toLowerCase()));
     }
 }
 
@@ -65,8 +65,8 @@ function getProductsByFilter(filter: string) {
 }
 
 onMounted(async () => {
-    await store.fetchProducts();
-    products.value = store.getProducts;
+    await storeProducts.fetchProducts();
+    products.value = storeProducts.getProducts;
     isLoading.value = false;
 })
 

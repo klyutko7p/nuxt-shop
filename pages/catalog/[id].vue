@@ -15,15 +15,15 @@
 <script setup lang="ts">
 import { useProductsStore } from '../../store/products';
 const route = useRoute();
-const store = useProductsStore();
+const storeProducts = useProductsStore();
 
 let id = route.params.id;
 let product = ref(<Product>{})
 let isLoading = ref(true)
 
 onMounted(async () => {
-    await store.fetchProduct(+id);
-    product.value = store.getProduct
+    await storeProducts.fetchProduct(+id);
+    product.value = storeProducts.getProduct
     isLoading.value = false;
 })
 

@@ -10,11 +10,11 @@ export const useCartStore = defineStore("cart", () => {
   function addProductToCart(product: any) {
     if (cart.value.includes(product)) {
       product.quantity += 1;
-      toast.success("Quantity of product will change to +1")
+      toast.success("Quantity of product will change to +1");
     } else {
       product.quantity = 1;
       cart.value.push(product);
-      toast.success("You add product to cart")
+      toast.success("You add product to cart");
     }
   }
 
@@ -35,7 +35,7 @@ export const useCartStore = defineStore("cart", () => {
 
   function clearCart() {
     cart.value.length = 0;
-    toast.success("Cart is empty now!")
+    toast.success("Cart is empty now!");
     actionSum();
   }
 
@@ -52,7 +52,7 @@ export const useCartStore = defineStore("cart", () => {
         cart.value.splice(index, 1);
       }
     });
-    toast.warning("Product was deleted from cart")
+    toast.warning("Product was deleted from cart");
   }
 
   const getProductsByCart = computed(() => cart.value);

@@ -24,13 +24,13 @@
 import { useCategoriesStore } from '../../store/categories';
 
 const router = useRouter();
-const store = useCategoriesStore();
+const storeCategories = useCategoriesStore();
 let categories = ref([])
 let isLoading = ref(true)
 
 onMounted(async () => {
-    await store.fetchCategories();
-    categories.value = store.getCategories;
+    await storeCategories.fetchCategories();
+    categories.value = storeCategories.getCategories;
     isLoading.value = false;
 })
 
