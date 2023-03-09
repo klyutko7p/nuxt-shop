@@ -1,5 +1,5 @@
 <template>
-    <div class="grid grid-cols-1" v-if="!isCart">
+    <div class="grid grid-cols-1" v-if="!isCart && !isSingleProduct">
         <img :src="product.image" alt="" class="w-52 relative h-80 mx-auto cursor-pointer mb-7"
             @click="router.push(`/catalog/${product.id}`)">
         <h1 class="cursor-pointer hover:text-[var(--hover-color)] text-2xl overflow-hidden text-ellipsis whitespace-nowrap"
@@ -17,7 +17,7 @@
                 class=" cursor-pointer hover:text-[var(--hover-color)]" @click="addToCart" />
         </div>
     </div>
-    <div v-else class="grid grid-cols-3 max-xl:grid-cols-1"> 
+    <div v-else-if="isCart && !isSingleProduct" class="grid grid-cols-3 max-xl:grid-cols-1">
         <div class="mt-5">
             <img :src="product.image" alt="img" class="max-xl:h-full max-xl:w-1/3 mx-auto w-1/2 h-80">
         </div>
@@ -40,14 +40,49 @@
             </div>
         </div>
     </div>
+    <div v-else>
+        <div class="grid grid-cols-2 max-lg:grid-cols-1">
+            <div>
+                <img :src="product.image" class="border-2 border-gray-300 p-5 w-1/2 h-full max-lg:mx-auto max-lg:border-0"
+                    alt="">
+            </div>
+            <div class="text-center">
+                <h1 class="font-medium text-2xl">{{ product.title }} ➖ ${{ product.price }}</h1>
+                <h1 class="uppercase m-5 cursor-pointer text-xl hover:text-[var(--hover-color)]"
+                    @click="$router.push(`/categories/${product.category}`)">{{ product.category }}</h1>
+                <h1 class="italic">{{ product.description }}</h1>
+                <div>
+                    <h1 class="text-2xl font-extrabold mt-5">{{ product.rating.count }} number of ratings, {{
+                        product.rating.rate }}
+                        AVG of rating
+                    </h1>
+                </div>
+                <div class="flex items-center justify-center text-3xl mt-10 cursor-pointer hover:text-[var(--hover-color)]"
+                    @click="addToCart">
+                    <Icon name="fa-regular:plus-square" class="mr-2" />
+                    <h1>Add to Cart</h1>
+                </div>
+            </div>
+        </div>
+        <ProductsSlider :products="products" v-if="!isLoading" :category="product.category" />
+        <div v-else>
+            <UISpinner />
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
+
+
 import { useCartStore } from '../store/cart';
+import { useCategoriesStore } from '../store/categories';
 
 const router = useRouter();
 const cart = useCartStore();
+const categoriesStore = useCategoriesStore();
 
+let products = ref<Array<Product>>([])
+let isLoading = ref(true)
 
 function addToCart() {
     cart.addProductToCart(props.product);
@@ -64,7 +99,14 @@ function deleteProduct(id: number) {
 
 const props = defineProps({
     product: { type: Object as PropType<Product> | Object as PropType<CartProduct>, required: true },
-    isCart: { type: Boolean, default: false }
+    isCart: { type: Boolean, default: false },
+    isSingleProduct: { type: Boolean, default: false },
+})
+
+onMounted(async () => {
+    await categoriesStore.fetchProductsByCategory(props.product.category)
+    products.value = categoriesStore.getProductsByCategory
+    isLoading.value = false;
 })
 
 </script>

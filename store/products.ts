@@ -19,5 +19,12 @@ export const useProductsStore = defineStore("products", () => {
   const getProducts = computed(() => products.value);
   const getProduct = computed(() => product.value);
 
-  return { fetchProducts, getProducts, query, products, getProduct, fetchProduct };
+  return {
+    fetchProducts,
+    getProducts,
+    query,
+    products,
+    getProduct,
+    fetchProduct,
+  };
 });

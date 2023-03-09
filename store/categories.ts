@@ -18,5 +18,10 @@ export const useCategoriesStore = defineStore("categories", () => {
   const getCategories = computed(() => categories.value);
   const getProductsByCategory = computed(() => products.value);
 
-  return { getCategories, fetchCategories, fetchProductsByCategory, getProductsByCategory };
+  return {
+    getCategories,
+    fetchCategories,
+    fetchProductsByCategory,
+    getProductsByCategory,
+  };
 });
