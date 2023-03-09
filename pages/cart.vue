@@ -1,4 +1,7 @@
 <template>
+    <Head>
+        <Title>Online Store - Cart {{ cart.cart.length }} items</Title>
+    </Head>
     <div>
         <h1 class="text-xl font-bold">Cart ➖ ${{ cart.getSumOfProducts.toFixed(2) }}
             <Icon name="ic:outline-shopping-cart" size="1.5em" />
@@ -31,7 +34,7 @@ const cart = useCartStore();
 const orders = useOrdersStore();
 const router = useRouter();
 
-let products = ref<Array<CartProduct>>([]);
+let products = ref<Array<Product>>([]);
 
 function createOrder() {
     let orderId = orders.getRandomInt(1000000);

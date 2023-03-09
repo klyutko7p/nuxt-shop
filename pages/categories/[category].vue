@@ -1,6 +1,10 @@
 <template>
+    <Head>
+        <Title>Online Store - {{ category }}</Title>
+    </Head>
     <div v-if="!isLoading">
-        <h1 class="text-xl font-bold mb-10"> <span class="uppercase">{{ category }}</span> ➖ {{ products.length }} items.</h1>
+        <h1 class="text-xl font-bold mb-10"> <span class="uppercase">{{ category }}</span> ➖ {{ products.length }} items.
+        </h1>
         <div class="grid max-xl:grid-cols-2 max-sm:grid-cols-1 grid-cols-3 gap-20 mb-10">
             <div v-for="product in products" class="text-center rounded-md shadow-xl p-5 relative">
                 <Product :product="product" />

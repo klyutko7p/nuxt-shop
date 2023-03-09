@@ -4,7 +4,7 @@ import { useToast } from "vue-toastification";
 const toast = useToast();
 
 export const useCartStore = defineStore("cart", () => {
-  let cart = ref<Array<CartProduct>>([]);
+  let cart = ref<Array<Product>>([]);
   let sum = ref(0);
 
   function addProductToCart(product: any) {
@@ -18,7 +18,7 @@ export const useCartStore = defineStore("cart", () => {
     }
   }
 
-  function changeQuantity(sign: string, product: CartProduct) {
+  function changeQuantity(sign: string, product: Product) {
     if (cart.value.includes(product)) {
       switch (sign) {
         case "+":

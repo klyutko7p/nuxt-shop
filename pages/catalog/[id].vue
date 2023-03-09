@@ -1,4 +1,7 @@
 <template>
+    <Head>
+        <Title>Online Store - {{ product.title }}</Title>
+    </Head>
     <div v-if="!isLoading">
         <div>
             <Product :product="product" :is-single-product="true" />

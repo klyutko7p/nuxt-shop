@@ -1,4 +1,7 @@
 <template>
+    <Head>
+        <Title>Online Store - Order {{ order.orderId }} </Title>
+    </Head>
     <div>
         <div class="flex items-center justify-center flex-col">
             <h1 class="text-center font-bold text-2xl">You have successfully purchased the goods and placed an order!</h1>

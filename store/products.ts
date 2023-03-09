@@ -18,6 +18,7 @@ export const useProductsStore = defineStore("products", () => {
 
   const getProducts = computed(() => products.value);
   const getProduct = computed(() => product.value);
+  const getQuery = computed(() => query.value);
 
   return {
     fetchProducts,
@@ -26,5 +27,6 @@ export const useProductsStore = defineStore("products", () => {
     products,
     getProduct,
     fetchProduct,
+    getQuery,
   };
 });

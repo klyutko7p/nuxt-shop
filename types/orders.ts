@@ -1,4 +1,4 @@
 interface Order {
-    orderId: number,
-    products: Array<CartProduct>
+  orderId: number;
+  products: Array<Product>;
 }

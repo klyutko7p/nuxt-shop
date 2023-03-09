@@ -98,7 +98,7 @@ function deleteProduct(id: number) {
 }
 
 const props = defineProps({
-    product: { type: Object as PropType<Product> | Object as PropType<CartProduct>, required: true },
+    product: { type: Object as PropType<Product>, required: true },
     isCart: { type: Boolean, default: false },
     isSingleProduct: { type: Boolean, default: false },
 })

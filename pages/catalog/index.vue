@@ -1,4 +1,7 @@
 <template>
+    <Head>
+        <Title>Online Store - {{ store.query !== "" ? store.query : "Catalog" }}</Title>
+    </Head>
     <div class="">
         <div class="mb-5">
             <div class="mb-5">
