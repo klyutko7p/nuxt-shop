@@ -2,7 +2,7 @@
     <ClientOnly>
         <div class="text-black font-['Quicksand']">
             <TheNavbar class="relative z-10" />
-            <div class="container mx-auto mt-3 relative z-1 animate__animated animate__fadeIn p-5">
+            <div class="container mx-auto mt-3 relative z-1 p-5">
                 <slot />
             </div>
         </div>
