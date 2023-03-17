@@ -2,6 +2,9 @@
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+![image](https://user-images.githubusercontent.com/95645570/226000981-9a84863d-06c1-42a7-8ed8-cae3555f1582.png)
+
+
 ## Setup
 
 Make sure to install the dependencies:
